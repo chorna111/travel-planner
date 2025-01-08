@@ -1,0 +1,107 @@
+{{activity|json}}
+<div id="activity-form">
+  <h1 class="container text-center">Aktywności</h1>
+  <form (ngSubmit)="save()">
+    <input type="hidden" id="customerId">
+
+
+      <div class="row mb-3">
+        <label for="inputTitle" class="col-sm-2 col-form-label">Nazwa aktywności</label>
+        <div class="col-sm-10">
+        <input name="title" [(ngModel)]="activity.title" type="text"  id="inputTitle" class="form-control custom-field" required>
+      </div>
+      </div>
+
+
+      <div class="row mb-3">
+        <label for="inputType" class="col-sm-2 col-form-label">Rodzaj aktywności</label>
+        <div class="col-sm-10">
+        <select class="form-control" name="type" [(ngModel)]="activity.type" id="inputType" required>
+          <option value="" disabled selected>Wybierz rodzaj aktywności</option>
+          <option value="Kulturalna">Kulturalna</option>
+          <option value="Rozrywkowa">Rozrywkowa</option>
+          <option value="Edukacyjna">Edukacyjna</option>
+          <option value="Rekreacyjna">Rekreacyjna</option>
+          <option value="Inny">Inny</option>
+
+        </select>
+      </div>
+    </div>
+
+
+    <div class="row mb-3">
+      <label for="inputTicketNeeded" class="col-sm-2 col-form-label">Czy są potrzebne bilety?</label>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="ticketNeeded"
+            id="ticketNeededYes"
+            [(ngModel)]="activity.ticketNeeded"
+            [value]="true"
+          />
+          <label class="form-check-label" for="ticketNeededYes">
+            Tak
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="ticketNeeded"
+            id="ticketNeededNo"
+            [(ngModel)]="activity.ticketNeeded"
+            [value]="false"
+          />
+          <label class="form-check-label" for="ticketNeededNo">
+            Nie
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="inputDate" class="col-sm-2 col-form-label">Data</label>
+      <div class="col-sm-10">
+      <input name="date" type="date" class="form-control" [(ngModel)]="activity.date" id="inputDate" required>
+    </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="inputPreferredTime" class="col-sm-2 col-form-label">Preferowany czas</label>
+      <div class="col-sm-10">
+      <input name="preferredTime" type="time" step="60" class="form-control" [(ngModel)]="activity.preferredTime" id="inputPreferredTime" required>
+    </div>
+    </div>
+
+
+
+    <div class="row mb-3">
+      <label for="inputAdditionalInfo" class="col-sm-2 col-form-label">Uwagi dodatkowe</label>
+      <div class="col-sm-10">
+        <textarea name="additionalInfo" class="form-control" [(ngModel)]="activity.additionalInfo" id="inputAdditionalInfo"></textarea>
+      </div>
+    </div>
+
+
+
+    <button type="button" class="btn btn-outline-info" routerLink="/accomondation-form">Powrót</button>
+    <button type="button" class="btn btn-outline-info" (click)="saveActivity()">Dodaj kolejną aktywność</button>
+    <button type="submit" class="btn btn-outline-info">Zapisz i przejdź dalej</button>
+
+
+
+
+
+
+    </form>
+
+  </div>
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

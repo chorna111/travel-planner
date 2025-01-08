@@ -1,0 +1,117 @@
+{{accomondation|json}}
+<div id="accomondation-form">
+  <h1 class="container text-center">Zakwaterowanie</h1>
+  <form #form="ngForm" (ngSubmit)="save()">
+
+    <div class="row mb-3">
+
+
+
+        <label for="inputName" class="col-sm-2 col-form-label">Nazwa miejsca zakwaterowania</label>
+        <div class="col-sm-10">
+        <input name="name" [(ngModel)]="accomondation.name" type="text"  id="inputName" class="form-control custom-field" required>
+      </div>
+      </div>
+      <div class="row mb-3">
+
+        <label for="inputType" class="col-sm-2 col-form-label">Rodzaj zakwaterowania</label>
+        <div class="col-sm-10">
+        <select class="form-control" name="type" [(ngModel)]="accomondation.type" id="inputType" required>
+          <option value="" disabled selected>Wybierz rodzaj zakwaterowania</option>
+          <option value="Hostel">Hostel</option>
+          <option value="Motel">Motel</option>
+          <option value="Willa">Willa</option>
+          <option value="Apartament">Apartament</option>
+          <option value="Hotel">Hotel</option>
+          <option value="Pensjonat">Pensjonat</option>
+
+        </select>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="inputFacilities" class="col-sm-2 col-form-label">Udogodnienia</label>
+      <div class="col-sm-10">
+        <fieldset id="inputFacilities" class="form-control" required>
+          <div *ngFor="let f of facilitiesList">
+            <input
+              type="checkbox" [value]="f" (change)="updateFacilities($event, f)" [checked]="accomondation.facilities.includes(f)"/>
+            {{ f }}
+          </div>
+
+        </fieldset>
+      </div>
+    </div>
+
+
+      <div class="row mb-3">
+        <label for="inputArrDate" class="col-sm-2 col-form-label">Data zakwaterowania</label>
+        <div class="col-sm-10">
+        <input name="arrDate" type="date" class="form-control" [(ngModel)]="accomondation.arrDate" id="inputArrDate" required>
+        </div>
+      </div>
+
+
+      <div class="row mb-3">
+        <label for="inputDepDate" class="col-sm-2 col-form-label">Data wykwaterowania</label>
+        <div class="col-sm-10">
+        <input name="depDate" type="date" class="form-control" [(ngModel)]="accomondation.depDate" id="inputDepDate" required>
+      </div>
+      </div>
+    <div class="row mb-3">
+      <label for="inputNumberOfPeople" class="col-sm-2 col-form-label">Liczba osób</label>
+      <div class="col-sm-10">
+        <input name="numberOfPeople" class="form-control" [(ngModel)]="accomondation.numberOfPeople" id="inputNumberOfPeople" required>
+
+
+
+
+      </div>
+      <div class="row mb-3">
+        <div class="col-sm-10">
+
+      <label for="priceRangeMin">Minimalna cen za noc: {{ accomondation.priceRange.min }} PLN</label>
+      <input
+        type="range"
+        id="priceRangeMin"
+        name="priceRangeMin"
+        [(ngModel)]="accomondation.priceRange.min"
+        min="0"
+        max="1000"
+        step="10"
+      />
+      </div>
+      <div class="col-sm-10">
+
+      <label for="priceRangeMax">Maksymalna cena za noc: {{ accomondation.priceRange.max }} PLN</label>
+      <input
+        type="range"
+        id="priceRangeMax"
+        name="priceRangeMax"
+        [(ngModel)]="accomondation.priceRange.max"
+        min="0"
+        max="1000"
+        step="10"
+      />
+      </div>
+      </div>
+    </div>
+
+
+    <button type="submit" [disabled]="!form.valid" class="btn btn-outline-info">Zapisz i przejdź dalej</button>
+    <button class="btn btn-outline-info" routerLink="/trip-form">Powrót</button>
+
+
+
+
+    </form>
+    <div>
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
