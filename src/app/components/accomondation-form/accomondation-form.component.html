@@ -7,11 +7,44 @@
 
 
 
-        <label for="inputName" class="col-sm-2 col-form-label">Nazwa miejsca zakwaterowania</label>
+        <label for="inputName" class="col-sm-2 col-form-label">Wybierz miejsce zakwaterowania</label>
         <div class="col-sm-10">
-        <input name="name" [(ngModel)]="accomondation.name" type="text"  id="inputName" class="form-control custom-field" required>
+        <input #inputAccomondation name="name" [(ngModel)]="accomondation.name" type="text"  id="inputName" class="form-control custom-field" required>
       </div>
       </div>
+
+
+      <div class="row mb-4" *ngIf="accomondation.openingHours&&accomondation.openingHours.length>0; else noData">
+        <p>Godziny otwarcia</p>
+        <ul>
+          <li *ngFor="let hour of accomondation.openingHours">{{hour}}</li>
+        </ul>
+
+
+
+      </div>
+      <ng-template #noData>
+        <p>Brak danych o godzinach otwarcia</p>
+
+      </ng-template>
+
+      <div class="row mb-3">
+
+          <button type='button' class="btn btn-info" (click)="buttonDetailsClicked()">Pokaż szczegóły tego miejsca</button>
+
+
+      </div>
+      <div class="row mb-3" *ngIf="accomondation.details.length&&showDetails">
+
+        <p>Szczegóły</p>
+        <ul>
+          <li *ngFor="let detail of accomondation.details">{{detail}}</li>
+        </ul>
+      </div>
+
+
+
+
       <div class="row mb-3">
 
         <label for="inputType" class="col-sm-2 col-form-label">Rodzaj zakwaterowania</label>
@@ -28,22 +61,6 @@
         </select>
       </div>
     </div>
-
-    <div class="row mb-3">
-      <label for="inputFacilities" class="col-sm-2 col-form-label">Udogodnienia</label>
-      <div class="col-sm-10">
-        <fieldset id="inputFacilities" class="form-control" required>
-          <div *ngFor="let f of facilitiesList">
-            <input
-              type="checkbox" [value]="f" (change)="updateFacilities($event, f)" [checked]="accomondation.facilities.includes(f)"/>
-            {{ f }}
-          </div>
-
-        </fieldset>
-      </div>
-    </div>
-
-
       <div class="row mb-3">
         <label for="inputArrDate" class="col-sm-2 col-form-label">Data zakwaterowania</label>
         <div class="col-sm-10">
@@ -67,34 +84,7 @@
 
 
       </div>
-      <div class="row mb-3">
-        <div class="col-sm-10">
 
-      <label for="priceRangeMin">Minimalna cen za noc: {{ accomondation.priceRange.min }} PLN</label>
-      <input
-        type="range"
-        id="priceRangeMin"
-        name="priceRangeMin"
-        [(ngModel)]="accomondation.priceRange.min"
-        min="0"
-        max="1000"
-        step="10"
-      />
-      </div>
-      <div class="col-sm-10">
-
-      <label for="priceRangeMax">Maksymalna cena za noc: {{ accomondation.priceRange.max }} PLN</label>
-      <input
-        type="range"
-        id="priceRangeMax"
-        name="priceRangeMax"
-        [(ngModel)]="accomondation.priceRange.max"
-        min="0"
-        max="1000"
-        step="10"
-      />
-      </div>
-      </div>
     </div>
 
 

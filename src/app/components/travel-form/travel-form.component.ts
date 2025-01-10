@@ -11,11 +11,10 @@ declare var google: any;
 })
 export class TravelFormComponent implements OnInit, AfterViewInit {
 
-
   @Input()
   trip:Trip=new Trip()
-  @ViewChild('inputCountry', { static: false }) countryInput!: ElementRef;
-  @ViewChild('inputCity', { static: false }) cityInput!: ElementRef;
+  @ViewChild('inputCountry', { static: false }) inputCountry!: ElementRef;
+  @ViewChild('inputCity', { static: false }) inputCity!: ElementRef;
 
 
   constructor(public formDataService: FormDataService,private router:Router) {
@@ -24,23 +23,32 @@ export class TravelFormComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    this.initializeAutocomplete(this.countryInput.nativeElement, 'country');
-    this.initializeAutocomplete(this.cityInput.nativeElement, 'city');
+    this.initializeAutocomplete(this.inputCountry.nativeElement, 'country');
+    this.initializeAutocomplete(this.inputCity.nativeElement, 'city');
   }
-  initializeAutocomplete(inputElement: HTMLInputElement, type: string): void {
-    const autocomplete = new google.maps.places.Autocomplete(inputElement, {
+  initializeAutocomplete(inputRegion: HTMLInputElement, type: string): void {
+    const autocomplete = new google.maps.places.Autocomplete(inputRegion, {
       types: ['(regions)'],
     });
+    autocomplete.setFields(['name','address_components','geometry'])
 
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
       if(type==='city'){
+
+        const countryCode=this.trip.country=place.address_components.find((component:any)=>
+          component.types.includes('country')
+        )?.short_name;
+        this.trip.countryCode=countryCode
         this.trip.country=place.address_components.find((component:any)=>
           component.types.includes('country')
         )?.long_name;
         this.trip.city=place.address_components.find((component:any)=>
           component.types.includes('locality')||component.types.includes('administrative_area_level_2') ||component.types.includes('sublocality') // Podobszary
         )?.long_name;
+        this.trip.bounds = place.geometry.bounds|| place.geometry.viewport
+
+
       }
       console.log(this.trip)
     });

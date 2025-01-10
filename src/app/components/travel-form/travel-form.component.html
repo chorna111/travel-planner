@@ -8,7 +8,7 @@
       <div class="row mb-3">
         <label for="inputCountry" class="col-sm-2 col-form-label">Kraj</label>
         <div class="col-sm-10">
-        <input #inputCountry name="country" [(ngModel)]="trip.country" type="text"  id="inputCountry" class="form-control custom-field" required>
+        <input  #inputCountry name="country" [(ngModel)]="trip.country" type="text"  id="inputCountry" class="form-control custom-field" required>
       </div>
       </div>
       <div class="row mb-3">
@@ -97,6 +97,7 @@
 
     <button type="submit" [disabled]="!form.valid" class="btn btn-outline-info">Zapisz i przejdź dalej</button>
     <button  class="btn btn-outline-info" routerLink="">Powrót</button>
+
 
 
 

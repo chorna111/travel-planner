@@ -1,14 +1,16 @@
 export class Accomondation{
   constructor(){}
   name:string=""
-  type:string=""//select
+  type:string=""
 
-  facilities:string[]=[]
-  //priceRange:
+  details:string[]=[]
+  openingHours:string[]=[]
   arrDate:string=""
   depDate:string=""
   numberOfPeople:number=0
-  priceRange: { min: number, max: number } = { min: 0, max: 1000 }; 
+
+
+  
 
 
 
