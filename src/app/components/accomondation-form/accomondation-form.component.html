@@ -1,6 +1,6 @@
-{{accomondation|json}}
+
 <div id="accomondation-form">
-  <h1 class="container text-center">Zakwaterowanie</h1>
+  <h1 class="container text-center" id="heading">Zakwaterowanie</h1>
   <form #form="ngForm" (ngSubmit)="save()">
 
     <div class="row mb-3">
@@ -9,36 +9,23 @@
 
         <label for="inputName" class="col-sm-2 col-form-label">Wybierz miejsce zakwaterowania</label>
         <div class="col-sm-10">
-        <input #inputAccomondation name="name" [(ngModel)]="accomondation.name" type="text"  id="inputName" class="form-control custom-field" required>
-      </div>
-      </div>
-
-
-      <div class="row mb-4" *ngIf="accomondation.openingHours&&accomondation.openingHours.length>0; else noData">
-        <p>Godziny otwarcia</p>
-        <ul>
-          <li *ngFor="let hour of accomondation.openingHours">{{hour}}</li>
-        </ul>
-
-
+        <input #inputAccomondation name="name" [(ngModel)]="accomondation.name" type="text"  id="inputName"  placeholder="Wyszukaj miejsce zakwaterowania" class="form-control custom-field">
 
       </div>
-      <ng-template #noData>
-        <p>Brak danych o godzinach otwarcia</p>
 
-      </ng-template>
+      </div>
 
       <div class="row mb-3">
 
-          <button type='button' class="btn btn-info" (click)="buttonDetailsClicked()">Pokaż szczegóły tego miejsca</button>
+          <button type='button' class="btn btn-outline-info" (click)="buttonDetailsClicked()">Wyświetl szczegóły</button>
 
 
       </div>
       <div class="row mb-3" *ngIf="accomondation.details.length&&showDetails">
 
-        <p>Szczegóły</p>
+
         <ul>
-          <li *ngFor="let detail of accomondation.details">{{detail}}</li>
+          <li class="acc-details-el" *ngFor="let detail of accomondation.details">{{detail}}</li>
         </ul>
       </div>
 
@@ -59,12 +46,13 @@
           <option value="Pensjonat">Pensjonat</option>
 
         </select>
+        <p class="required-info">To pole jest wymagane!</p>
       </div>
     </div>
       <div class="row mb-3">
         <label for="inputArrDate" class="col-sm-2 col-form-label">Data zakwaterowania</label>
         <div class="col-sm-10">
-        <input name="arrDate" type="date" class="form-control" [(ngModel)]="accomondation.arrDate" id="inputArrDate" required>
+        <input name="arrDate" type="date" class="form-control" [(ngModel)]="accomondation.arrDate" id="inputArrDate">
         </div>
       </div>
 
@@ -72,7 +60,7 @@
       <div class="row mb-3">
         <label for="inputDepDate" class="col-sm-2 col-form-label">Data wykwaterowania</label>
         <div class="col-sm-10">
-        <input name="depDate" type="date" class="form-control" [(ngModel)]="accomondation.depDate" id="inputDepDate" required>
+        <input name="depDate" type="date" class="form-control" [(ngModel)]="accomondation.depDate" id="inputDepDate">
       </div>
       </div>
     <div class="row mb-3">

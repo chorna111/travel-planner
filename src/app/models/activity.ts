@@ -3,7 +3,7 @@ export class Activity{
   date:string=""
   type:string=""
   ticketNeeded:boolean=false
-  //withGid:boolean=false
+
   preferredTime:string=""
   additionalInfo:string=""
 }

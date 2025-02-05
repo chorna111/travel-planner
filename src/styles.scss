@@ -1,1 +1,116 @@
-/* You can add global styles to this file, and also import other style files */
+// /* You can add global styles to this file, and also import other style files */
+$body-bg:rgb(86, 66, 96);
+$button-bg:#2e2134;
+$button-txt:rgb(224, 149, 234);
+$color:rgb(32, 9, 35);
+$color-fc-disbut:rgb(169, 140, 174);
+$border-color:rgb(148, 48, 153);
+
+
+html body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $body-bg;
+  padding-left: 80px;
+  padding-right: 80px;
+
+  color:$color;
+
+}
+
+
+
+html h1{
+  color:$color;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+html .form-control,
+html .form-control::placeholder,
+html .form-control:focus,
+html .list-group-item{
+  background-color: $color-fc-disbut;
+  color:$color;
+  border-color: rgb(148, 48, 153);
+  box-shadow: none;
+
+
+}
+
+html .list-group{
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+html .btn.btn-outline-info,
+.btn.btn-primary {
+    color: $button-txt;
+    border-color: rgb(148, 48, 153);
+    border-radius: 15px;
+    max-height:fit-content;
+    max-width: fit-content;
+
+
+    background-color: $button-bg;
+
+}
+html .btn.btn-outline-info:hover,
+.btn.btn-outline-info:focus,
+.btn.btn-primary:hover,
+.btn.btn-primary:focus{
+  background-color: rgb(43, 17, 46) ;
+  color:$button-txt;
+  border-color: rgb(148, 48, 153);
+
+
+
+}
+html .alert.alert-danger{
+
+  background-color: rgb(153, 72, 72);
+  color: $body-bg;
+}
+.btn.btn-lg {
+  margin-top: 300px;
+  font-size: 100px;
+
+
+
+  font-size: 50px;
+
+}
+.required-info{
+  color:$button-txt;
+  font-size: x-small;
+
+
+}
+
+
+
+
+
+
+
+html input:disabled,
+
+html select:disabled,
+html textarea:disabled,
+html button:disabled {
+    color: $button-txt;
+    background-color: $color-fc-disbut;
+    border-color: rgb(148, 48, 153)
+}
+ input:checked{
+   background-color: $button-txt!important;
+}
+html .acc-details-el{
+  font-size: large;
+  font-weight: bold;
+  justify-self: center;
+}
+
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import '../node_modules/bootstrap/scss/variables'
+

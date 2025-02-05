@@ -13,6 +13,7 @@ export class FormDataService {
   accomondation:Accomondation=new Accomondation()
   activities: Activity[]=[]
 
+
   saveTrip(newTrip:Trip){
     this.trip = newTrip
   }
@@ -28,4 +29,15 @@ export class FormDataService {
   getActivities(){
     return this.activities
   }
+  activityToEdit: Activity | null = null;
+
+  setActivityToEdit(index:number) {
+    this.activityToEdit = this.activities[index];
+  }
+
+  getActivityToEdit(): Activity | null {
+    return this.activityToEdit;
+  }
+
+
 }

@@ -14,7 +14,7 @@ export class AccomondationFormComponent {
       this.accomondation = this.formDataService.getAccomondation();
 
     }
-    @Input()
+    //@Input()
 
 
 
@@ -24,30 +24,13 @@ export class AccomondationFormComponent {
     ngOnInit():void{}
     ngAfterViewInit():void{
       const autocomplete=new google.maps.places.Autocomplete(this.inputAccomondation.nativeElement, {types:['lodging'], componentRestrictions:{country:this.formDataService.trip.countryCode}})
-      autocomplete.setFields(['name','formatted_address','geometry','opening_hours','place_id','price_level','rating','vicinity','dine_in','formatted_phone_number'])
+      autocomplete.setFields(['name','formatted_address','geometry','place_id','price_level','rating','vicinity','dine_in','formatted_phone_number'])
       autocomplete.setBounds(this.formDataService.trip.bounds)
       autocomplete.addListener('place_changed',()=>{
         const place=autocomplete.getPlace()
         this.formDataService.accomondation.name=place.name
 
-        //do aktywności
-        // if (place.opening_hours) {
-        //   console.log('Opening hours:', place.opening_hours);
-        //   if (place.opening_hours.weekday_text) {
-        //     console.log('Weekday text:', place.opening_hours.weekday_text);
-        //     this.formDataService.accomondation.openingHours = place.opening_hours.weekday_text;
-        //   } else {
-        //     console.log('Brak danych o godzinach otwarcia');
-        //     this.formDataService.accomondation.openingHours = [];
-        //   }
-        // } else {
-        //   console.log('Brak danych o godzinach otwarcia');
-        //   this.formDataService.accomondation.openingHours = [];
-        // }//
         this.formDataService.accomondation.details=[]
-        // if(place.formatted_address){
-        //   this.formDataService.accomondation.details.push(`Adres: ${place.formatted_address}`)
-        // }
         if(place.vicinity){
           this.formDataService.accomondation.details.push(`Adres: ${place.vicinity}`)
         }
@@ -83,6 +66,10 @@ export class AccomondationFormComponent {
 
     save(){
       this.formDataService.saveAccomondation(this.accomondation)
+      if (new Date(this.accomondation.depDate) < new Date(this.accomondation.arrDate)) {
+        alert("Data wykwaterowania nie może być wcześniejsza niż data zakwaterowania.");
+        return;
+      }
 
 
       console.log(this.accomondation)
