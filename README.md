@@ -8,8 +8,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 
 ## Instalation and configuration
-git clone https://github.com/chorna111/travel-planner.githttps://github.com/chorna111/travel-planner.git
-cd 
+git clone https://github.com/chorna111/travel-planner.git
 
 ### Installing dependencies
 npm install
